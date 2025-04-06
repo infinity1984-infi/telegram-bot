@@ -7,7 +7,7 @@ API_HASH = "your_api_hash"
 BOT_TOKEN = "your_bot_token"
 
 # Replace with your media channel ID (can be username or ID)
-MEDIA_CHANNEL = -1001234567890
+MEDIA_CHANNEL = -1002610839118
 
 app = Client(
     "my_bot",
