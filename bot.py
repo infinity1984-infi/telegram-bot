@@ -1,44 +1,37 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-import asyncio
+import os
 
-API_ID = 23810894
-API_HASH = "7f51292061e6a64df8589ae7756e5603"
-BOT_TOKEN = "7145224784:AAE-6hVmhm6fWcJMj-4mI0zKqHf2-fxXud8"
-BATCH_CHANNEL = -1002610839118  # -100 prefix is required
+API_ID = int(os.getenv("API_ID"))
+API_HASH = os.getenv("API_HASH")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
-VIDEO_IDS = {
-    1: 3,
-    2: 4,
-    3: 5,
-    4: 6,
-    5: 7,
-    6: 8,
-    7: 9,
-    8: 10,
-    9: 11,
-    10: 12,
+bot = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+
+# Video links mapped to numbers
+videos = {
+    "1": "https://t.me/c/2610839118/3",
+    "2": "https://t.me/c/2610839118/4",
+    "3": "https://t.me/c/2610839118/5",
+    "4": "https://t.me/c/2610839118/6",
+    "5": "https://t.me/c/2610839118/7",
+    "6": "https://t.me/c/2610839118/8",
+    "7": "https://t.me/c/2610839118/9",
+    "8": "https://t.me/c/2610839118/10",
+    "9": "https://t.me/c/2610839118/11",
+    "10": "https://t.me/c/2610839118/12"
 }
 
-app = Client("video_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+@bot.on_message(filters.command("start"))
+async def start(_, message: Message):
+    await message.reply("👋 Welcome!\nSend a number from 1 to 10 to receive a video.")
 
-@app.on_message(filters.command("start"))
-async def start(client, message: Message):
-    await message.reply("👋 Welcome!\nSend a number from 1 to 10 and I'll send you the video.")
+@bot.on_message(filters.text & filters.private)
+async def send_video(_, message: Message):
+    num = message.text.strip()
+    if num in videos:
+        await message.reply_video(videos[num])
+    else:
+        await message.reply("❗ Please enter a valid number (1 to 10).")
 
-@app.on_message(filters.text & filters.private)
-async def send_video(client, message: Message):
-    try:
-        num = int(message.text.strip())
-        if num in VIDEO_IDS:
-            await client.copy_message(
-                chat_id=message.chat.id,
-                from_chat_id=BATCH_CHANNEL,
-                message_id=VIDEO_IDS[num]
-            )
-        else:
-            await message.reply("❗Please enter a number between 1 and 10.")
-    except Exception as e:
-        await message.reply(f"⚠️ Error: {str(e)}")
-
-app.run()
+bot.run()
