@@ -8,7 +8,12 @@ API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 BATCH_CHANNEL_ID = -1002610839118
 
-app = Client("my_bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, in_memory=True)
+app = Client(
+    session_name=os.path.join("/mnt/data", "direct-media-bot"),
+    api_id=API_ID,
+    api_hash=API_HASH,
+    bot_token=BOT_TOKEN
+)
 
 @app.on_message(filters.private & filters.text)
 async def handle_message(client, message):
@@ -35,4 +40,11 @@ async def handle_message(client, message):
     except Exception as e:
         await message.reply_text(f"❌ Unexpected error: {e}")
 
-app.run()
+from pyrogram.errors import FloodWait
+import asyncio
+
+try:
+    app.run()
+except FloodWait as e:
+    print(f"⚠️ Telegram FloodWait: Sleeping for {e.value} seconds.")
+    asyncio.run(asyncio.sleep(e.value))
