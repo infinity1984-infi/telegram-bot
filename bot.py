@@ -40,11 +40,17 @@ async def handle_message(client, message):
     except Exception as e:
         await message.reply_text(f"❌ Unexpected error: {e}")
 
-from pyrogram.errors import FloodWait
 import asyncio
+from pyrogram.errors import FloodWait
 
-try:
-    app.run()
-except FloodWait as e:
-    print(f"⚠️ Telegram FloodWait: Sleeping for {e.value} seconds.")
-    asyncio.run(asyncio.sleep(e.value))
+while True:
+    try:
+        app.run()
+        break  # Exit the loop if successful
+    except FloodWait as e:
+        wait_time = e.value + 5  # Add a buffer
+        print(f"⚠️ FloodWait! Waiting {wait_time} seconds before retrying...")
+        asyncio.run(asyncio.sleep(wait_time))
+    except Exception as e:
+        print(f"💥 Unexpected error: {e}")
+        break
