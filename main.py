@@ -12,7 +12,7 @@ from pyrogram.errors import (
 # Bot API credentials (get from https://my.telegram.org)
 API_ID = 23810894  # Replace with your API ID
 API_HASH = "7f51292061e6a64df8589ae7756e5603"  # Replace with your API HASH
-BOT_TOKEN = "7145224784:AAE-6hVmhm6fWcJMj-4mI0zKqHf2-fxXud8"  # Replace with your bot token
+BOT_TOKEN = "7145224784:AAFKzcYMESW8k1bgxlCxl9w_CU5w1tlVQFI"  # Replace with your bot token
 
 # Channel configuration
 DEFAULT_BATCH_CHANNEL_ID = -1002610839118  # Your media channel ID
