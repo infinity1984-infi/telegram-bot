@@ -10,16 +10,16 @@ from pyrogram.errors import (
 
 # ==================== CONFIGURATION ====================
 # Bot API credentials (get from https://my.telegram.org)
-API_ID = 23810894  # Replace with your API ID
-API_HASH = "7f51292061e6a64df8589ae7756e5603"  # Replace with your API HASH
-BOT_TOKEN = "7145224784:AAFKzcYMESW8k1bgxlCxl9w_CU5w1tlVQFI"  # Replace with your bot token
+API_ID = 22670401  # Replace with your API ID
+API_HASH = "d69c6c66f1ec1e34b94cc1e7cd6e1cd0"  # Replace with your API HASH
+BOT_TOKEN = "7245378757:AAGN_WfE2Dyu19JO7aOUQ10WrN5zCbmOpOI"  # Replace with your bot token
 
 # Channel configuration
-DEFAULT_BATCH_CHANNEL_ID = -1002610839118  # Your media channel ID
+DEFAULT_BATCH_CHANNEL_ID = -1002610086738  # Your media channel ID
 FORCE_SUB_CHANNEL_ID = 0  # Set to 0 to disable force sub
 
 # Admin configuration (add your Telegram user ID)
-ADMINS = frozenset({6285668838})  # Use frozenset for immutability and hashability
+ADMINS = frozenset({6227788045})  # Use frozenset for immutability and hashability
 
 # Bot behavior settings
 MAX_BATCH_SIZE = 50  # Maximum files in one batch request
