@@ -231,13 +231,12 @@ class AllInOneMediaBot:
             await message.edit("❌ Error occurred")
 
     async def run(self):
-        await self.app.start()
-        me = await self.app.get_me()
-        logger.info(f"Bot @{me.username} started")
-        logger.info(f"Admins: {ADMINS}")
-        logger.info(f"Batch channels: {self.batch_channels}")
-        logger.info(f"Force sub channels: {self.force_sub_channels}")
-        await asyncio.Event().wait()  # Run forever
+    await self.app.start()
+    me = await self.app.get_me()
+    logger.info(f"Bot @{me.username} started")
+    # Keep the bot running indefinitely
+    while True:
+        await asyncio.sleep(3600)  # Sleep 1 hour, repeat
 
 
 if __name__ == "__main__":
