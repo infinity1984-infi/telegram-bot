@@ -1,3 +1,5 @@
+from keep_alive import keep_alive
+keep_alive()
 import asyncio
 import logging
 from typing import Dict, List, Optional, Set, Tuple
@@ -7,8 +9,6 @@ from pyrogram.errors import (
     FloodWait, MessageIdInvalid, PeerIdInvalid,
     ChannelInvalid, ChatAdminRequired, UserNotParticipant
 )
-from keep_alive import keep_alive
-keep_alive()
 
 # ==================== CONFIGURATION ====================
 # Bot API credentials (get from https://my.telegram.org)
